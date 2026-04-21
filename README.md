@@ -272,4 +272,4 @@ docker buildx build --secret id=env_sec,env=MYSECRET -t secret-image -f secret.D
 
 4. Вопрос: Сработала ли команда с SYS_ADMIN? Если нет, какая capability отвечает именно за смену hostname (подсказка: man capabilities или поиск по CAP_SYS_ADMIN vs CAP_SYS_ADMIN domainname)? Объясни, почему давать контейнеру SYS_ADMIN все еще опасно, даже если это не --privileged.
 
-`?`
+`Команда с --cap-add=SYS_ADMIN сработала. Это объясняется тем, что в современных ядрах Linux системный вызов sethostname требует именно CAP_SYS_ADMIN. Это наглядно демонстрирует, почему capability SYS_ADMIN считается "root-equivalent" и крайне опасна. Использование --privileged дает все capabilities разом, а SYS_ADMIN дает лишь часть, но эта часть критически большая. В production нужно искать способ менять hostname без этой capability (например, через --uts=host или вовсе не менять его внутри контейнера).`
