@@ -99,7 +99,7 @@ docker run -d --name web-diff nginx:alpine
 
 4. **Вопрос**: В выводе `docker diff` ты увидишь флаги `C` (Change), `A` (Add), `D` (Delete). Что означает буква `C` перед записью `/var/cache/nginx`? Почему Nginx меняет эту директорию, хотя мы ее не трогали напрямую?
 
-`?`
+`Master process Nginx управляет Worker processes и пишет свои PID или сокеты во временную файловую систему`
 
 5. Удали контейнер `docker rm -f web-diff`. Что произошло с файлом `admin.html`? Почему в продакшене так делать нельзя?
 
